@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>BMR計算器</title>
+  <script>
+    function calculateBMR() {
+      var weight = parseFloat(document.getElementById('weight').value);
+      var height = parseFloat(document.getElementById('height').value);
+      var age = parseInt(document.getElementById('age').value);
+      var gender = document.querySelector('input[name="gender"]:checked').value;
+      
+      var bmr = 0;
+      
+      if (gender === "male") {
+        bmr = 66 + (13.75 * weight) + (5 * height) - (6.75 * age);
+      } else if (gender === "female") {
+        bmr = 655 + (9.56 * weight) + (1.85 * height) - (4.68 * age);
+      }
+      
+      document.getElementById('result').textContent = bmr.toFixed(2);
+    }
+  </script>
+</head>
+<body>
+  <h1>BMR計算器</h1>
+  <form>
+    <label for="weight">體重（公斤）：</label>
+    <input type="number" id="weight" required><br>
+    
+    <label for="height">身高（公分）：</label>
+    <input type="number" id="height" required><br>
+    
+    <label for="age">年齡：</label>
+    <input type="number" id="age" required><br>
+    
+    <label for="gender">性別：</label>
+    <input type="radio" id="male" name="gender" value="male" required>
+    <label for="male">男性</label>
+    <input type="radio" id="female" name="gender" value="female" required>
+    <label for="female">女性</label><br>
+    
+    <button type="button" onclick="calculateBMR()">計算</button>
+  </form>
+  
+  <h2>基礎代謝率（BMR）：</h2>
+  <p id="result"></p>
+</body>
+</html>
